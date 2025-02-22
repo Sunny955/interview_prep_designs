@@ -2,8 +2,35 @@ package org.lld.prep.Streams;
 
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+class Employee {
+    private String firstName;
+    private String lastName;
+
+    // Constructor
+    public Employee(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    // Getters
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName;
+    }
+}
 
 class User {
     private String name;
@@ -195,6 +222,73 @@ class StreamTest {
 
         System.out.println("User roles ids: "+userRolesId);
     }
+    public void multiSort() {
+        List<Employee> employees = Arrays.asList(
+                new Employee("John", "Doe"),
+                new Employee("Jane", "Doe"),
+                new Employee("Alice", "Smith"),
+                new Employee("Bob", "Johnson"),
+                new Employee("Charlie", "Brown")
+        );
+
+        List<Employee> sortedEmployee = employees.stream().sorted(
+                Comparator.comparing(Employee::getLastName)
+                        .thenComparing(Employee::getFirstName)
+        ).toList();
+
+        sortedEmployee.forEach((Employee e) -> System.out.println(e.toString()));
+
+        int sum = IntStream.range(1,11).sum();
+
+        System.out.println("Sum from 1 to 10: "+sum);
+    }
+
+    public void countWordFrequency() {
+        List<String> stationeryList = Arrays.asList(
+                "Pen", "Eraser", "Note Book", "Pen", "Pencil", "Stapler", "Note Book", "Pencil"
+        );
+        Map<String,Long> freqMap = stationeryList.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        freqMap.forEach((a,b)-> System.out.println(a + " : "+b));
+    }
+    public void concatArrSorted() {
+        int[] a = new int[] {4, 2, 5, 1};
+        int[] b = new int[] {8, 1, 9, 5};
+
+        int[] c = IntStream.concat(Arrays.stream(a),Arrays.stream(b)).sorted().distinct().toArray();
+
+        for(int i=0;i<c.length;i++) {
+            System.out.println(c[i]);
+        }
+    }
+    public void secondLargestNumber() {
+        List<Integer> listOfIntegers = Arrays.asList(45, 12, 56, 15, 24, 75, 31, 89);
+        int secondLarge = listOfIntegers.stream().sorted((a,b) -> b-a).skip(1).findFirst().get();
+
+        System.out.println("Second largest: "+secondLarge);
+    }
+    public void sortAccordingtoLength() {
+        List<String> listOfStrings = Arrays.asList("Java", "Python", "C#", "HTML", "Kotlin", "C++", "COBOL", "C");
+
+        List<String> sortedLength = listOfStrings.stream().sorted((a,b) -> a.length()-b.length()).toList();
+
+        sortedLength.forEach(System.out::println);
+    }
+    public void mostRepeatedElement() {
+        List<String> listOfStrings = Arrays.asList("Pen", "Eraser", "Note Book", "Pen", "Pencil", "Pen", "Note Book", "Pencil");
+
+        Map<String, Long> freqMap = listOfStrings.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
+        Map.Entry<String, Long> mostFreqString = freqMap.entrySet().stream().max(Map.Entry.comparingByValue()).get();
+
+        System.out.println("Most freq string: "+mostFreqString.getKey()+" freq: "+mostFreqString.getValue());
+    }
+    public void lengthFreq() {
+        List<String> strings = Arrays.asList("dog","cat","elephant","rabbit","fox","giraffe","ant","zebra","owl");
+
+        Map<Integer, Long> lengthMap = strings.stream().collect(Collectors.groupingBy((s)->s.length(),Collectors.counting()));
+
+        lengthMap.forEach((a,b) -> System.out.println("Length: "+a+ " frequency: "+b));
+    }
 }
 
 public class StreamTestApi {
@@ -217,6 +311,13 @@ public class StreamTestApi {
         streamTest.peekingElement();
         streamTest.convertIntToDouble();
         streamTest.flatMapUsage();
+        streamTest.multiSort();
+        streamTest.countWordFrequency();
+        streamTest.concatArrSorted();
+        streamTest.secondLargestNumber();
+        streamTest.sortAccordingtoLength();
+        streamTest.mostRepeatedElement();
+        streamTest.lengthFreq();
     }
 }
 

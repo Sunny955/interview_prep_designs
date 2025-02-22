@@ -1,4 +1,4 @@
-package read_write_lock_multithread;
+package org.lld.prep.read_write_lock_multithread;
 
 import java.util.concurrent.locks.ReadWriteLock;
 

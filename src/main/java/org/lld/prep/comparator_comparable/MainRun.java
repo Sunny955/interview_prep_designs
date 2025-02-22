@@ -18,7 +18,7 @@ class Employee implements Comparable<Employee> {
 
     @Override
     public int compareTo(Employee o) {
-        return this.age - o.getAge();
+        return this.id.compareTo(o.getId());
     }
 
     @Override
@@ -42,7 +42,7 @@ class Employee implements Comparable<Employee> {
 class IdComparator implements Comparator<Employee> {
     @Override
     public int compare(Employee o1, Employee o2) {
-        return o1.id.compareTo(o2.id);
+        return o1.getAge() - o2.getAge();
     }
 }
 
