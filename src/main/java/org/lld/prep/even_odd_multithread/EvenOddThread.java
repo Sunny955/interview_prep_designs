@@ -5,8 +5,8 @@ public class EvenOddThread {
         int limit = 10;
         PrintNumbers pn = new PrintNumbers(limit);
 
-        Thread t1 = new Thread(() -> pn.printEven());
-        Thread t2 = new Thread(() -> pn.printOdd());
+        Thread t1 = new Thread(pn::printEven);
+        Thread t2 = new Thread(pn::printOdd);
 
         t1.start();
         t2.start();
