@@ -13,9 +13,14 @@ class MultithreadedSingleton {
         count++;
         System.out.println("Dalli Gym jaun hu!:"+ count);
     }
-    private MultithreadedSingleton() {}
+    private MultithreadedSingleton() {
+        super();
+    }
 
     private static class MultithreadedSingletonHelper {
+        private MultithreadedSingletonHelper() {
+            super();
+        }
         private static final MultithreadedSingleton instance = new MultithreadedSingleton();
     }
 
@@ -25,6 +30,10 @@ class MultithreadedSingleton {
 }
 
 public class MainClass {
+    public MainClass() {
+        super();
+    }
+
     public static void main(String[] args) {
         Thread t1 = new Thread(() -> {
             MultithreadedSingleton multithreadedSingleton = MultithreadedSingleton.getInstance();

@@ -75,6 +75,7 @@ class User {
     }
 }
 
+@SuppressWarnings("unused")
 class StreamTest {
     public void evenNumbers() {
         // Q1

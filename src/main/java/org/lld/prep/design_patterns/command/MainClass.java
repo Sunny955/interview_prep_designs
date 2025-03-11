@@ -6,6 +6,10 @@ interface Command {
     void execute();
 }
 class Light {
+    public Light() {
+        super();
+    }
+
     public void on() {
         System.out.println("Lights on!");
     }
@@ -17,6 +21,7 @@ class Light {
 class LightsOnCommand implements Command {
     private Light light;
     public LightsOnCommand(Light light) {
+        super();
         this.light = light;
     }
     @Override
@@ -28,6 +33,7 @@ class LightsOffCommand implements Command {
     private Light light;
 
     public LightsOffCommand(Light light) {
+        super();
         this.light = light;
     }
 
@@ -39,7 +45,9 @@ class LightsOffCommand implements Command {
 
 class RemoteControl {
     Command slot;
-    public RemoteControl() {}
+    public RemoteControl() {
+        super();
+    }
     public void setCommand(Command slot) {
         this.slot = slot;
     }
@@ -49,6 +57,10 @@ class RemoteControl {
 }
 
 public class MainClass {
+    public MainClass() {
+        super();
+    }
+
     public static void main(String[] args) {
         RemoteControl rm = new RemoteControl();
         Light light = new Light();
