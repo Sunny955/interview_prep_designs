@@ -1,0 +1,10 @@
+Design Linkedin
+
+
+Features:
+Users should be able to post new text posts.
+Method to fetch all posts of a userID.
+Method to fetch all the followers of a user.
+Method to fetch all the following of a user.
+Method to fetch all posts relevant for a userID i.e. the posts of whoever they are following
+Posts can contain tags to other userID. Method to search all the posts mentioning a userId
