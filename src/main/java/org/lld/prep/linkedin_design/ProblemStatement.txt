@@ -1,6 +1,5 @@
 Design Linkedin
 
-
 Features:
 Users should be able to post new text posts.
 Method to fetch all posts of a userID.
