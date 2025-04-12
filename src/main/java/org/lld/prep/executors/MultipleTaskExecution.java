@@ -9,6 +9,7 @@ import java.util.concurrent.Executors;
 
 public class MultipleTaskExecution {
     public void execute() {
+        // Factory method to create a executor service
         ExecutorService service = Executors.newFixedThreadPool(2);
 
         CompletableFuture<List<String>> fetchUserData = CompletableFuture.supplyAsync(() -> {
