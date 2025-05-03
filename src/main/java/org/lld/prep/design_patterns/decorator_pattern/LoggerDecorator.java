@@ -9,5 +9,6 @@ abstract public class LoggerDecorator implements Logger {
 
     @Override
     public void log(String message) {
+        
     }
 }

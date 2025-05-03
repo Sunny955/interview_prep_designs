@@ -19,6 +19,11 @@ public class StreamTestMain {
                 )
         );
 
+        employees.sort(Comparator.comparing(Employee::getName));
+//        Collections.sort(employees, (e1, e2) -> Math.toIntExact(e2.getSalary() - e1.getSalary()));
+
+        System.out.println(employees);
+
         Predicate<Employee> p1 = e -> e.getSalary() < 60000;
         Predicate<Employee> p2 = e -> e.getSalary() > 40000;
 
